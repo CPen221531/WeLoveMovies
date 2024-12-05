@@ -12,27 +12,24 @@ const theatersRouter = require("./theaters/theaters.router");
 
 const app = express();
 
-// CORS and JSON parsing middleware
 app.use(cors());
 app.use(express.json());
 
-// Root route with welcome message
 app.get("/", (request, response) => {
   response.json({ 
     data: "Welcome to WeLoveMovies API" 
   });
 });
 
-// Router middleware
+app.all("/", (req, res) => {
+  res.status(405).json({ error: "Method not allowed" });
+});
+
 app.use("/movies", moviesRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/theaters", theatersRouter);
 
-// Method not allowed handler for root path
-app.all("/", methodNotAllowed);
-
-// Error handling middleware
-app.use(notFound); // 404 handler
-app.use(errorHandler); // Generic error handler
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;
