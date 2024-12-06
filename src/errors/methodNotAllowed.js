@@ -1,8 +1,5 @@
-function methodNotAllowed(request, response, next) {
-  next({
-    status: 405,
-    message: `Method ${request.method} not allowed for ${request.originalUrl}`,
-  });
+function methodNotAllowed(req, res, next) {
+  res.status(405).json({ error: "Method not allowed" });
 }
 
 module.exports = methodNotAllowed;
