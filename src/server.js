@@ -5,10 +5,17 @@ const knex = require("./db/connection");
 
 const listener = () => console.log(`Listening on Port ${PORT}!`);
 
+// Run migrations and start the server
 knex.migrate
   .latest()
-  .then((migrations) => {
-    console.log("migrations", migrations);
+  .then(([batchNumber, log]) => {
+    console.log(`Migrations completed: Batch ${batchNumber}`);
+    if (log.length) {
+      console.log("Migrations run:", log.join(", "));
+    }
     app.listen(PORT, listener);
   })
-  .catch(console.error);
+  .catch((error) => {
+    console.error("Error running migrations:", error);
+    process.exit(1); // Exit with failure code
+  });
