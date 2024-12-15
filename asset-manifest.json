@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/WeLoveMovies/static/js/main.c5c19732.js",
+    "index.html": "/WeLoveMovies/index.html",
+    "main.c5c19732.js.map": "/WeLoveMovies/static/js/main.c5c19732.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c5c19732.js"
+  ]
+}
