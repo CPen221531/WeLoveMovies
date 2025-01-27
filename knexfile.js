@@ -6,9 +6,8 @@ module.exports = {
     client: "postgresql",
     connection: {
       connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false }, // Enable SSL for development
+      ssl: { rejectUnauthorized: false }, // Use SSL for secure connections
     },
-    pool: { min: 0, max: 5 },
     migrations: {
       directory: path.join(__dirname, "src", "db", "migrations"),
     },
@@ -20,9 +19,8 @@ module.exports = {
     client: "postgresql",
     connection: {
       connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false }, // Enable SSL for production
+      ssl: { rejectUnauthorized: false }, // Required for Render PostgreSQL
     },
-    pool: { min: 0, max: 5 },
     migrations: {
       directory: path.join(__dirname, "src", "db", "migrations"),
     },
